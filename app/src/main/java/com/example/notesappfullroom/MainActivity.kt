@@ -9,8 +9,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.notesappfullroom.DBRoom.Note
 import com.example.notesappfullroom.databinding.MainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -30,17 +28,8 @@ class MainActivity : AppCompatActivity() {
         })
         binding.btnAddNote.setOnClickListener {
             val note = binding.edNote.text.toString()
-            if (note.isNotEmpty())
-            {
-               mainViewModel.addNote(note)
-                binding.edNote.text.clear()
-                Toast.makeText(applicationContext, "note is added", Toast.LENGTH_SHORT).show()
-            }
-            else
-            {
-                Toast.makeText(applicationContext, "please enter text", Toast.LENGTH_SHORT).show()
-            }
-
+            mainViewModel.addNote(note)
+            binding.edNote.text.clear()
         }
         }
 

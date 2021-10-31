@@ -1,6 +1,7 @@
 package com.example.notesappfullroom
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.example.notesappfullroom.DBRoom.Note
@@ -11,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application):AndroidViewModel(application) {
+    val app=application
     private val notes: LiveData<List<Note>>
      var dbRoom:NoteDoa
     init {
@@ -21,9 +23,18 @@ class MainViewModel(application: Application):AndroidViewModel(application) {
         return notes
     }
     fun addNote(note:String){
-        CoroutineScope(Dispatchers.IO).launch {
-            dbRoom.insertNote(Note(0,note))
+        if (note.isNotEmpty())
+        {
+            CoroutineScope(Dispatchers.IO).launch {
+                dbRoom.insertNote(Note(0,note))
+            }
+            Toast.makeText(app, "note is added", Toast.LENGTH_SHORT).show()
         }
+        else
+        {
+            Toast.makeText(app, "please enter text", Toast.LENGTH_SHORT).show()
+        }
+
     }
     fun updateNote(id:Int,note:String){
         CoroutineScope(Dispatchers.IO).launch {
