@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
             {
                mainViewModel.addNote(note)
                 binding.edNote.text.clear()
+                Toast.makeText(applicationContext, "note is added", Toast.LENGTH_SHORT).show()
             }
             else
             {
