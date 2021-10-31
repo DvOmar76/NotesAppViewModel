@@ -16,7 +16,7 @@ class MainViewModel(application: Application):AndroidViewModel(application) {
     private val notes: LiveData<List<Note>>
      var dbRoom:NoteDoa
     init {
-        dbRoom=NoteDatabase.getInstance(application).NoteDoa()
+        dbRoom=NoteDatabase.getInstance(app).NoteDoa()
         notes =dbRoom.getAllNote()
     }
     fun getNotes():LiveData<List<Note>>{
